@@ -53,7 +53,7 @@ public class LoginPage implements ActionListener{
         frame.add(messageLabel);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(840, 840);
+        frame.setSize(420, 420);
         frame.setLayout(null);
         frame.setVisible(true);
 
@@ -78,7 +78,7 @@ public class LoginPage implements ActionListener{
                     messageLabel.setForeground(Color.green);
                     messageLabel.setText("Login successful");
                     frame.dispose();
-                    WelcomePage welcomePage = new WelcomePage(LoginInfo, userID);
+                    WelcomePage welcomePage = new WelcomePage(LoginInfo, userID); //opens new welcome page
 
                 } else {
                     messageLabel.setText("Wrong password");
@@ -90,7 +90,8 @@ public class LoginPage implements ActionListener{
             }
         }
         if(e.getSource() == createAccountButton){
-
+            CreateAccountPage createAccountPage = new CreateAccountPage();
+            frame.dispose();
         }
     }
 
