@@ -86,7 +86,7 @@ public class LoginPage implements ActionListener{
             }
         }
         if(e.getSource() == createAccountButton){
-            CreateAccountPage createAccountPage = new CreateAccountPage(LoginInfo);
+            CreateAccountPage createAccountPage = new CreateAccountPage(LoginInfo); //sends logininfo to create account page
             frame.dispose();
         }
     }

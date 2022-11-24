@@ -7,7 +7,8 @@ import javax.swing.JFrame;
 
 public class CreateAccountPage implements ActionListener {
     JFrame frame = new JFrame(); //opens new frame
-    JLabel createAccountLabel = new JLabel("Create an Account");
+
+    JLabel messageLabel = new JLabel("Create an Account");
 
     JLabel userNameLabel = new JLabel("User ID: ");
 
@@ -25,19 +26,20 @@ public class CreateAccountPage implements ActionListener {
 
     JPasswordField confirmPasswordField = new JPasswordField();
 
+    HashMap<String, String> LoginInfo = new HashMap<>();
 
+    CreateAccountPage(HashMap<String, String> LoginInfoOriginal){
 
+        LoginInfo = LoginInfoOriginal; //stores loginInfo sent from loginPage(original) and stores it here
 
-
-    CreateAccountPage(HashMap<String, String> LoginInfo){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420,420);
         frame.setLayout(null);
         frame.setVisible(true);
 
-        createAccountLabel.setBounds(70, 25, 420, 30);
-        createAccountLabel.setFont(new Font(null, Font.BOLD, 30));
-        frame.add(createAccountLabel);
+        messageLabel.setBounds(70, 25, 420, 30);
+        messageLabel.setFont(new Font(null, Font.BOLD, 30));
+        frame.add(messageLabel);
 
         userNameLabel.setBounds(50,100,75,25);
         userNameLabel.setVisible(true);
@@ -63,13 +65,43 @@ public class CreateAccountPage implements ActionListener {
         confirmPasswordField.setVisible(true);
         frame.add(confirmPasswordField);
 
+        confirmButton.setBounds(125,250,200,25);
+        confirmButton.setVisible(true);
+        confirmButton.addActionListener(this);
+        confirmButton.setFocusable(false);
+        frame.add(confirmButton);
 
-
-
+        resetButton.setBounds(125, 280, 200,25);
+        resetButton.setFocusable(false);
+        resetButton.setVisible(true);
+        resetButton.addActionListener(this);
+        frame.add(resetButton);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == resetButton) {
+            userNameField.setText("");
+            createPasswordField.setText("");
+            confirmPasswordField.setText("");
+            messageLabel.setText("Create an Account");
+        }
+
+        if(e.getSource() == confirmButton){
+            String username = userNameField.getText();
+            String password = passwordLabel.getText();
+            String passwordConfirmation = confirmPasswordLabel.getText();
+
+
+            if(LoginInfo.containsKey(username)){
+                messageLabel.setForeground(Color.red);
+                messageLabel.setText("Username Exists");
+            }
+
+
+
+
+        }
 
     }
 }
