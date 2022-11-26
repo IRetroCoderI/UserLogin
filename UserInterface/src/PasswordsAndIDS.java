@@ -12,6 +12,7 @@ public class PasswordsAndIDS {
         loginInfo.put("Bro","pizza");
         loginInfo.put("Angie","subway");
         loginInfo.put("Jesus","sushi");
+        loginInfo.put("Username", "password");
     }
     protected HashMap getLoginInfo(){
         return loginInfo;

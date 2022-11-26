@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 public class LoginPage implements ActionListener{
-
     JFrame frame = new JFrame();
     JButton loginButton = new JButton("Login");
     JButton resetButton = new JButton("Reset");
@@ -16,51 +15,48 @@ public class LoginPage implements ActionListener{
     JLabel userPasswordLabel = new JLabel("Password: ");
     JLabel messageLabel = new JLabel("Enter Information");
     HashMap<String ,String> LoginInfo = new HashMap<String, String>();
+
+
+
     LoginPage (HashMap<String, String> LoginInfoOriginal){
-        LoginInfo = LoginInfoOriginal;
-
-        userIDLabel.setBounds(50, 100, 75, 25);
-        userPasswordLabel.setBounds(50, 150, 75, 25);
-
-        messageLabel.setBounds(125, 300, 250, 35);
-        messageLabel.setFont(new Font(null, Font.ITALIC, 25));
-
-        userIDField.setBounds(125, 100, 200, 25);
-        userPasswordField.setBounds(125, 150, 200, 25);
-
-        loginButton.setBounds(125, 200, 100, 25);
-        loginButton.addActionListener(this);
-
-        resetButton.setBounds(225, 200, 100, 25);
-        resetButton.addActionListener(this);
-
-        createAccountButton.setBounds(125,230,200,25);
-        createAccountButton.addActionListener(this);
-
-        createAccountButton.setFocusable(false);
-        resetButton.setFocusable(false);
-        loginButton.setFocusable(false);
-        frame.add(createAccountButton);
-        frame.add(resetButton);
-        frame.add(loginButton);
-        frame.add(userIDField);
-        frame.add(userPasswordField);
-
-
-
-        frame.add(userIDLabel);
-        frame.add(userPasswordLabel);
-        frame.add(messageLabel);
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(840, 840);
+        frame.setSize(420, 420);
         frame.setLayout(null);
         frame.setVisible(true);
 
+        LoginInfo = LoginInfoOriginal;
+
+        userIDLabel.setBounds(50, 100, 75, 25);
+        frame.add(userIDLabel);
+        userIDField.setBounds(125, 100, 200, 25);
+        frame.add(userIDField);
+
+        userPasswordField.setBounds(125, 150, 200, 25);
+        userPasswordLabel.setBounds(50, 150, 75, 25);
+        frame.add(userPasswordField);
+        frame.add(userPasswordLabel);
         userPasswordField.setEchoChar('*');
 
-    }
 
+        messageLabel.setBounds(125, 300, 250, 35);
+        messageLabel.setFont(new Font(null, Font.ITALIC, 25));
+        frame.add(messageLabel);
+
+        loginButton.setBounds(125, 200, 100, 25);
+        loginButton.addActionListener(this);
+        loginButton.setFocusable(false);
+        frame.add(loginButton);
+
+        resetButton.setBounds(225, 200, 100, 25);
+        resetButton.addActionListener(this);
+        resetButton.setFocusable(false);
+        frame.add(resetButton);
+
+        createAccountButton.setBounds(125,230,200,25);
+        createAccountButton.addActionListener(this);
+        createAccountButton.setFocusable(false);
+        frame.add(createAccountButton);
+    }
     public void actionPerformed(ActionEvent e) {
         //some code
         if (e.getSource() == resetButton) {
@@ -78,7 +74,7 @@ public class LoginPage implements ActionListener{
                     messageLabel.setForeground(Color.green);
                     messageLabel.setText("Login successful");
                     frame.dispose();
-                    WelcomePage welcomePage = new WelcomePage(LoginInfo, userID);
+                    WelcomePage welcomePage = new WelcomePage(LoginInfo, userID); //opens new welcome page
 
                 } else {
                     messageLabel.setText("Wrong password");
@@ -90,9 +86,8 @@ public class LoginPage implements ActionListener{
             }
         }
         if(e.getSource() == createAccountButton){
-
+            CreateAccountPage createAccountPage = new CreateAccountPage(LoginInfo); //sends logininfo to create account page
+            frame.dispose();
         }
     }
-
-
 }
