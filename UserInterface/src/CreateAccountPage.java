@@ -87,15 +87,34 @@ public class CreateAccountPage implements ActionListener {
             messageLabel.setText("Create an Account");
         }
 
-        if(e.getSource() == confirmButton){
+
+        if(e.getSource() == confirmButton){ //checks if the confirm button is pressed
             String username = userNameField.getText();
-            String password = passwordLabel.getText();
-            String passwordConfirmation = confirmPasswordLabel.getText();
+            String password = createPasswordField.getText();
+            String passwordConfirmation = confirmPasswordField.getText();
 
-
-            if(LoginInfo.containsKey(username)){
+            // 1 - make sure username does not exist
+            // 2 - make sure username and password fields are not empty
+            // 3 - make sure passwords match
+            // 4 - profit
+            if(LoginInfo.containsKey(username)){ // 1
                 messageLabel.setForeground(Color.red);
                 messageLabel.setText("Username Exists");
+            }
+
+            if(userNameField.getText().length() != 0 && createPasswordField.getText().length() != 0 && confirmPasswordField.getText().length() != 0){
+                if(passwordConfirmation.equals(password)){
+                    LoginInfo.put(username, password);
+                    frame.dispose();
+                    LoginPage newLoginPage = new LoginPage(LoginInfo);
+
+                } else{
+                    messageLabel.setForeground(Color.red);
+                    messageLabel.setText("Passwords Different");
+                }
+            } else {
+                messageLabel.setForeground(Color.red);
+                messageLabel.setText("Fill all Fields");
             }
 
 
